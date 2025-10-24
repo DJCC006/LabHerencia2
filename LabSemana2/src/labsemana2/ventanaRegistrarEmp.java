@@ -58,7 +58,8 @@ public class ventanaRegistrarEmp {
         tipoEmpleados.setBounds(150, 280, 300, 25);
         
         
-        
+        JTextField Topetxt = new JTextField("Ingrese la Fecha de Aogtamiento de Contrato");
+        Topetxt.setBounds(450, 350, 300, 25);
         
         JButton btAgregar = new JButton("Registrar Empleado");
         btAgregar.setBounds(150,390, 200, 50);
@@ -71,27 +72,23 @@ public class ventanaRegistrarEmp {
               switch(type){
                   case "Normal":
                       
-                      EmpleadoNormal newEmp = new EmpleadoNormal (Integer.valueOf(codigotxt.getText()), nombretxt.getText());
+                     EmpleadoNormal newEmp = new EmpleadoNormal (Integer.valueOf(codigotxt.getText()), nombretxt.getText());
                       listaEmpleados.add(newEmp);
                       JOptionPane.showMessageDialog(screen, "Se ha agregado el empleado de forma exitosa");
                       break;
 
                       
                   case "Ventas":
-                      /*
-                      EmpleadoVentas newEmpV = new EmpleadoVentas(Integer.valueOf(codigotxt.getText()), nombretxt.getText(),0.5);
-                      listaEmpleado.add(newEmpV);
+                      Ventas newEmpV = new Ventas(Integer.valueOf(codigotxt.getText()), nombretxt.getText(),0.5);
+                      listaEmpleados.add(newEmpV);
                       System.out.println("Se ha agregado el empleado de forma exitosa");
                       break;
-*/
                       
                   case "Temporal":
-                      /*
-                      EmpleadoTemporal newEmpT = new EmpleadoTemporal(Integer.valueOf(codigotxt.getText()), nombretxt.getText(),"2026/02/10");
-                      listaEmpleado.add(newEmpT);
+                       EmpleadoTemporal newEmpT = new EmpleadoTemporal(Integer.valueOf(codigotxt.getText()), nombretxt.getText(), Topetxt.getText());
+                      listaEmpleados.add(newEmpT);
                       System.out.println("Se ha agregado el empleado de forma exitosa");
                       break;
-*/
               }  
           }
                     
@@ -108,7 +105,7 @@ public class ventanaRegistrarEmp {
                     
         });
          
-         
+        screen.add(Topetxt);
         screen.add(tipoLabel);
         screen.add(tipoEmpleados);
         screen.add(btAgregar);

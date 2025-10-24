@@ -93,14 +93,16 @@ public class ventanaBuscarEmp {
         btActFechaContrato.addActionListener(new ActionListener(){
           @Override 
           public void actionPerformed(ActionEvent e){
-              String tipo= empBuscado.tipo;
-              if(tipo.equals("Temporal")){
-                  
-              }else{
+                try{
+                    String tipo= empBuscado.tipo;
+                if(tipo.equals("Temporal")){
+
+                }else{
+                    JOptionPane.showMessageDialog(screen, "Esta opcion no esta disponible para este empleado");
+                }
+              }catch(NullPointerException a){
                   JOptionPane.showMessageDialog(screen, "Esta opcion no esta disponible para este empleado");
               }
-              
-             
           }
                     
         });

@@ -96,7 +96,7 @@ public class ventanaBuscarEmp {
                 try{
                     String tipo= empBuscado.tipo;
                 if(tipo.equals("Temporal")){
-
+                      subVentActFechaCont sub = new subVentActFechaCont(empBuscado,listaEmpleados);
                 }else{
                     JOptionPane.showMessageDialog(screen, "Esta opcion no esta disponible para este empleado");
                 }
@@ -116,8 +116,30 @@ public class ventanaBuscarEmp {
         btRegVentas.addActionListener(new ActionListener(){
           @Override 
           public void actionPerformed(ActionEvent e){
+              try{
+                    String tipo= empBuscado.tipo;
+                if(tipo.equals("Ventas")){
+                      subVentRegVentas sub = new subVentRegVentas(empBuscado,listaEmpleados);
+                }else{
+                    JOptionPane.showMessageDialog(screen, "Esta opcion no esta disponible para este empleado");
+                }
+              }catch(NullPointerException a){
+                  JOptionPane.showMessageDialog(screen, "Esta opcion no esta disponible para este empleado");
+              }
+             
+          }
+                    
+        });
+        
+        
+        JButton btCalPago = new JButton("Calcular Pago Mensual");
+        btCalPago .setBounds(500, 480, 200, 50);
+        
+        btCalPago .addActionListener(new ActionListener(){
+          @Override 
+          public void actionPerformed(ActionEvent e){
               screen.dispose();
-              //ventanaOponentes ventana = new ventanaOponentes();
+              subPago sub = new subPago(empBuscado,listaEmpleados);
              
           }
                     
@@ -126,8 +148,10 @@ public class ventanaBuscarEmp {
         
         
         
+        
+        
         JButton btRegresar = new JButton("Regresar a Menu");
-        btRegresar.setBounds(500, 480, 200, 50);
+        btRegresar.setBounds(100, 480, 200, 50);
         
         btRegresar.addActionListener(new ActionListener(){
           @Override 
@@ -142,7 +166,7 @@ public class ventanaBuscarEmp {
         
         
         
-        
+        screen.add(btCalPago );
         screen.add(btBuscar);
         screen.add(btRegHoras);
         screen.add(btActFechaContrato);

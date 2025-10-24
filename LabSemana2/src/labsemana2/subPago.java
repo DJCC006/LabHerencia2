@@ -18,15 +18,13 @@ import javax.swing.JTextField;
  *
  * @author David
  */
-public class subVentRegVentas {
-    
-    private static EmpleadoNormal empleado;
+public class subPago {
+     private static EmpleadoNormal empleado;
     private static ArrayList<EmpleadoNormal> lista;
     
-    public subVentRegVentas(EmpleadoNormal empleado, ArrayList<EmpleadoNormal> lista){
-        this.lista=lista;
+    public subPago(EmpleadoNormal empleado, ArrayList<EmpleadoNormal> lista){
+         this.lista=lista;
         this.empleado= empleado;
-        
         JFrame screen = new JFrame();
         screen.setSize(800, 600);  //Tamaño standard para menus
         screen.setResizable(false);
@@ -36,42 +34,35 @@ public class subVentRegVentas {
         
         
         
-        JLabel titulo = new JLabel("Registrar Ventas");
+        JLabel titulo = new JLabel("Calcular Pago");
         titulo.setBounds(150, 50, 700, 100);
         titulo.setFont(new Font("Serif", Font.BOLD, 40));
         
         
-        JLabel MesLabel= new JLabel("Ingrese el Mes en donde desea registrar la venta (1-12): ");
-        MesLabel.setBounds(120, 180, 500, 25);
+        JLabel pagoLabel= new JLabel("Pago de Empleado: ");
+        pagoLabel.setBounds(150, 180, 300, 25);
         
-        JTextField Mestxt = new JTextField();
-        Mestxt.setBounds(150, 200, 200, 25);
+        JTextField pagotxt = new JTextField();
+        pagotxt.setBounds(150, 200, 200, 25);
+        pagotxt.setEnabled(false);
+       
         
-        JLabel VentasLabel= new JLabel("Ingrese la cantidad de ventas a registrar: ");
-        VentasLabel.setBounds(150, 280, 300, 25);
         
-        JTextField Ventastxt = new JTextField();
-        Ventastxt.setBounds(150, 300, 200, 25);
+       
         
         
         
         //Botones de acciones
-        JButton btRegistrar = new JButton("Registrar Ventas");
-        btRegistrar.setBounds(500, 180, 200, 50);
+        JButton btCalcPago = new JButton("Calcular Pago");
+        btCalcPago.setBounds(500, 180, 200, 50);
         
-        btRegistrar.addActionListener(new ActionListener(){
+        btCalcPago.addActionListener(new ActionListener(){
           @Override 
           public void actionPerformed(ActionEvent e){
-             try{
-                 if(empleado!=null){
-                    Ventas temp = (Ventas) empleado;
-                    double amount = Double.valueOf(Ventastxt.getText());
-                    int mes = Integer.valueOf(Mestxt.getText());
-                    temp.IngresarVentas(amount, mes);
-                }
-             }catch(NullPointerException k){
-                 JOptionPane.showMessageDialog(screen, "Aviso: Porfavor introducir valores validos");
-             }
+            if(empleado!=null){
+                double pago = empleado.calcularPago();
+                pagotxt.setText(String.valueOf(pago));
+            }
             
           }
                     
@@ -93,18 +84,15 @@ public class subVentRegVentas {
         
         
         screen.add(btRegresar);
-        screen.add(btRegistrar);
-        screen.add(VentasLabel);
-        screen.add(Ventastxt);
-        screen.add(Mestxt);
-        screen.add(MesLabel);
+        screen.add(btCalcPago);
+        screen.add(pagotxt);
+        screen.add(pagoLabel);
         screen.add(titulo);
         screen.setVisible(true);
     }
     
     
     public static void main(String[] args) {
-        subVentRegVentas ventana = new subVentRegVentas(empleado, lista);
+        subPago ventana = new subPago(empleado, lista);
     }
-    
 }

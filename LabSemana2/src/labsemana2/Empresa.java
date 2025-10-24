@@ -72,7 +72,8 @@ public class Empresa {
         btGenReporte.addActionListener(new ActionListener(){
           @Override 
           public void actionPerformed(ActionEvent e){
-              
+              screen.dispose();
+              ventanaGenReporte ventana = new ventanaGenReporte(listaEmpleados);
           }
                     
         });
